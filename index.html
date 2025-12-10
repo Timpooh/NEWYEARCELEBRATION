@@ -1,4 +1,3 @@
-
 <!DOCTYPE html> 
 <html lang="th">
 <head>
@@ -11,14 +10,47 @@
     <!-- Floating decorations -->
     <div class="floating-hearts" id="hearts-container"></div>
     <div class="stars" id="stars-container"></div>
+    
+    <!-- Fireworks container -->
+    <canvas id="fireworks"></canvas>
+
+    <!-- Music control -->
+    <div class="music-control">
+        <button id="musicToggle" class="music-btn" onclick="toggleMusic()">
+            🎵 เปิดเพลง
+        </button>
+    </div>
 
     <!-- Main content -->
     <div class="container">
         <header>
             <div class="header-decoration">✨💖✨</div>
-            <h1>Happy New Year 2026 !</h1>
+            <h1 id="animatedTitle">Happy New Year 2026 !</h1>
             <p class="subtitle">To My Cutest Nomsod !🐨🤍</p>
         </header>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-card">
+            <h3>⏰ เวลาที่เราอยู่ด้วยกัน</h3>
+            <div class="countdown-display">
+                <div class="time-unit">
+                    <span id="days" class="time-number">0</span>
+                    <span class="time-label">วัน</span>
+                </div>
+                <div class="time-unit">
+                    <span id="hours" class="time-number">0</span>
+                    <span class="time-label">ชั่วโมง</span>
+                </div>
+                <div class="time-unit">
+                    <span id="minutes" class="time-number">0</span>
+                    <span class="time-label">นาที</span>
+                </div>
+                <div class="time-unit">
+                    <span id="seconds" class="time-number">0</span>
+                    <span class="time-label">วินาที</span>
+                </div>
+            </div>
+        </div>
 
         <div class="message-card">
             <h2>ถึงคนที่ฉันรักมาก ๆๆๆๆ</h2>
@@ -37,6 +69,76 @@
             </p>
         </div>
 
+        <!-- Photo Gallery -->
+        <div class="gallery-section">
+            <h2 style="text-align: center; color: #ff69b4; margin-bottom: 30px;">
+                💝 ความทรงจำของเรา
+            </h2>
+            <div class="photo-grid">
+                <div class="photo-item" style="background: linear-gradient(135deg, #ffe5ec, #fff9e6);">
+                    <div class="photo-placeholder">📸</div>
+                    <p>ภาพที่ 1</p>
+                </div>
+                <div class="photo-item" style="background: linear-gradient(135deg, #fff9e6, #ffe5f0);">
+                    <div class="photo-placeholder">💕</div>
+                    <p>ภาพที่ 2</p>
+                </div>
+                <div class="photo-item" style="background: linear-gradient(135deg, #ffe5f0, #ffe5ec);">
+                    <div class="photo-placeholder">🎉</div>
+                    <p>ภาพที่ 3</p>
+                </div>
+                <div class="photo-item" style="background: linear-gradient(135deg, #ffe5ec, #fff9e6);">
+                    <div class="photo-placeholder">💖</div>
+                    <p>ภาพที่ 4</p>
+                </div>
+            </div>
+            <p style="text-align: center; color: #ff69b4; margin-top: 20px; font-size: 0.9em;">
+                * ใส่รูปภาพของเราได้นะ แค่แทนที่ emoji ด้วยรูปจริง
+            </p>
+        </div>
+
+        <!-- Love Messages -->
+        <div class="messages-section">
+            <h2 style="text-align: center; color: #ff69b4; margin-bottom: 30px;">
+                💌 ข้อความจากใจ
+            </h2>
+            <div class="messages-container" id="messagesContainer">
+                <div class="message-bubble left">
+                    <p>รักเธอมากนะ ขอบคุณที่อยู่เคียงข้างกัน 💕</p>
+                </div>
+                <div class="message-bubble right">
+                    <p>ขอให้ปีใหม่นี้เรามีความสุขมาก ๆ นะ 🎊</p>
+                </div>
+                <div class="message-bubble left">
+                    <p>สัญญาว่าจะดูแลเธอให้ดีที่สุด 🌟</p>
+                </div>
+            </div>
+            <div class="message-input-area">
+                <input type="text" id="newMessage" placeholder="เขียนข้อความหวาน ๆ..." maxlength="100">
+                <button onclick="addMessage()" class="send-btn">ส่ง 💕</button>
+            </div>
+        </div>
+
+        <!-- Wish Tree -->
+        <div class="wish-tree-section">
+            <h2 style="text-align: center; color: #ff69b4; margin-bottom: 30px;">
+                🌸 ต้นไม้แห่งความปรารถนา
+            </h2>
+            <div class="tree-container">
+                <div class="tree">🌳</div>
+                <div class="wishes-container" id="wishesContainer">
+                    <div class="wish-tag" style="top: 20%; left: 15%;">💫 มีความสุข</div>
+                    <div class="wish-tag" style="top: 40%; left: 70%;">💖 รักกันตลอดไป</div>
+                    <div class="wish-tag" style="top: 60%; left: 25%;">✨ สุขภาพดี</div>
+                    <div class="wish-tag" style="top: 75%; left: 65%;">🎯 ทำงานสำเร็จ</div>
+                </div>
+            </div>
+            <div class="wish-input-area">
+                <input type="text" id="newWish" placeholder="เขียนความปรารถนาของเธอ..." maxlength="50">
+                <button onclick="addWish()" class="wish-btn">แขวนป้าย 🏷️</button>
+            </div>
+        </div>
+
         <div class="gift-section">
             <p style="color: #ff69b4; font-size: 1.3em; margin-bottom: 20px;">
                 ฉันมีของขวัญพิเศษสำหรับเธอด้วยแหละ 🎁
@@ -44,6 +146,19 @@
             <button class="gift-button" onclick="openGift()">
                 Open !
             </button>
+        </div>
+
+        <!-- Love Calculator -->
+        <div class="love-calculator">
+            <h3>💕 Love Meter</h3>
+            <div class="love-bar-container">
+                <div class="love-bar" id="loveBar">
+                    <span id="lovePercent">100%</span>
+                </div>
+            </div>
+            <p style="text-align: center; color: #ff1493; margin-top: 15px;">
+                ความรักของเรา = 100% เสมอ! 💖
+            </p>
         </div>
     </div>
 
@@ -64,6 +179,9 @@
                     <br><br>
                     <span style="font-size: 2em;">💖 🎊 🌟 🎉 💖</span>
                 </p>
+                <button onclick="launchFireworks()" class="firework-btn">
+                    🎆 จุดพลุฉลอง!
+                </button>
             </div>
         </div>
     </div>
