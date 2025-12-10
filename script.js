@@ -3,7 +3,7 @@ function createHeart() {
     const heartsContainer = document.getElementById('hearts-container');
     const heart = document.createElement('div');
     heart.className = 'heart';
-    heart.innerHTML = ['💕', '💖', '💗', '💝'][Math.floor(Math.random() * 4)];
+    heart.innerHTML = ['🤍', '🐨', '💗', '💛','⭐'][Math.floor(Math.random() * 4)];
     heart.style.left = Math.random() * 100 + '%';
     heart.style.animationDelay = Math.random() * 5 + 's';
     heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
