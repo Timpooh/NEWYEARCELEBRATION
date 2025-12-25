@@ -4,7 +4,7 @@ let isMusicPlaying = false;
 
 function initMusic() {
     // สร้าง audio element
-    bgMusic = new Audio('../music/bgmusic.mp3'); // ⚠️ เปลี่ยนชื่อไฟล์ตรงนี้ตามชื่อเพลงของคุณ
+    bgMusic = new Audio(/music/bgmusic.mp3); // ⚠️ เปลี่ยนชื่อไฟล์ตรงนี้ตามชื่อเพลงของคุณ
     bgMusic.loop = true; // วนซ้ำ
     bgMusic.volume = 0.3; // ระดับเสียง (0.0 - 1.0)
     
