@@ -4,7 +4,7 @@ let isMusicPlaying = false;
 
 function initMusic() {
     // สร้าง audio element
-    bgMusic = new Audio(/music/bgmusic.mp3); // ⚠️ เปลี่ยนชื่อไฟล์ตรงนี้ตามชื่อเพลงของคุณ
+    bgMusic = new Audio('music/bgmusic.mp3'); // ✅ แก้ไขแล้ว: เพิ่ม quotes
     bgMusic.loop = true; // วนซ้ำ
     bgMusic.volume = 0.3; // ระดับเสียง (0.0 - 1.0)
     
@@ -45,20 +45,32 @@ function toggleMusic() {
 }
 
 function tryAutoplay() {
-    // เบราว์เซอร์ส่วนใหญ่บล็อก autoplay ดังนั้นจะเล่นเมื่อผู้ใช้คลิกที่ไหนก็ได้
-    document.addEventListener('click', function playOnFirstClick() {
-        if (!isMusicPlaying) {
-            const musicBtn = document.getElementById('musicBtn');
-            bgMusic.play().then(() => {
-                musicBtn.textContent = '🎶';
-                musicBtn.classList.add('playing');
-                isMusicPlaying = true;
-            }).catch(err => {
-                console.log('รอการคลิกเพื่อเปิดเพลง');
-            });
-        }
-        document.removeEventListener('click', playOnFirstClick);
-    }, { once: true });
+    // พยายามเล่นทันที
+    bgMusic.play().then(() => {
+        const musicBtn = document.getElementById('musicBtn');
+        musicBtn.textContent = '🎶';
+        musicBtn.classList.add('playing');
+        isMusicPlaying = true;
+        console.log('✅ เพลงเล่นอัตโนมัติสำเร็จ');
+    }).catch(err => {
+        console.log('⚠️ เบราว์เซอร์บล็อก autoplay - รอคลิกหน้าเว็บก่อน');
+        
+        // ถ้าเล่นอัตโนมัติไม่ได้ ให้เล่นเมื่อผู้ใช้คลิกที่ไหนก็ได้
+        document.addEventListener('click', function playOnFirstClick() {
+            if (!isMusicPlaying) {
+                const musicBtn = document.getElementById('musicBtn');
+                bgMusic.play().then(() => {
+                    musicBtn.textContent = '🎶';
+                    musicBtn.classList.add('playing');
+                    isMusicPlaying = true;
+                    console.log('✅ เพลงเริ่มเล่นหลังจากคลิก');
+                }).catch(e => {
+                    console.log('❌ ไม่สามารถเล่นเพลงได้:', e);
+                });
+            }
+            document.removeEventListener('click', playOnFirstClick);
+        }, { once: true });
+    });
 }
 
 // ========== Smooth Scroll & Animation ==========
