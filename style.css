@@ -1,0 +1,244 @@
+/* ========== ตั้งค่าพื้นฐาน ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    background: linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #5a4a3a;
+}
+
+/* ========== Container หลัก ========== */
+.container {
+    width: 100%;
+    max-width: 700px;
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== กล่องเนื้อหา ========== */
+.welcome-box, .question-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* ========== ไอคอนประกาย ========== */
+.sparkle {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(10deg); }
+}
+
+/* ========== หัวข้อ ========== */
+.title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #d4791f;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #8a7a6a;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* ========== กล่องข้อความ ========== */
+.message-box {
+    background: #fff9f0;
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 4px solid #f4a460;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.message-box p {
+    margin-bottom: 12px;
+    line-height: 1.8;
+}
+
+.message-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========== สำหรับหน้า Question ========== */
+.question-number {
+    font-size: 14px;
+    color: #d4791f;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.question-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #5a4a3a;
+    margin-bottom: 30px;
+}
+
+.answer-section {
+    background: #f0f8ff;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+    border-left: 4px solid #87ceeb;
+}
+
+.answer-label {
+    font-size: 14px;
+    color: #4682b4;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.answer-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #5a4a3a;
+}
+
+.response-section {
+    background: #fff0f5;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-align: left;
+    border-left: 4px solid #ff69b4;
+}
+
+.response-label {
+    font-size: 14px;
+    color: #db7093;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.response-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #5a4a3a;
+}
+
+/* ========== ปุ่ม ========== */
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #f4a460 0%, #d4791f 100%);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(244, 164, 96, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 164, 96, 0.4);
+}
+
+/* ========== ปุ่มนำทาง (ก่อนหน้า/ถัดไป) ========== */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.btn-nav {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.btn-prev {
+    background: #f5f5f5;
+    color: #5a4a3a;
+}
+
+.btn-prev:hover {
+    background: #e0e0e0;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, #f4a460 0%, #d4791f 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(244, 164, 96, 0.3);
+}
+
+.btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 164, 96, 0.4);
+}
+
+/* ========== Footer Note ========== */
+.footer-note {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #8a7a6a;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+    .welcome-box, .question-box {
+        padding: 30px 20px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+    }
+    
+    .question-text {
+        font-size: 20px;
+    }
+    
+    .navigation {
+        flex-direction: column;
+    }
+    
+    .btn-nav {
+        width: 100%;
+        text-align: center;
+    }
+}
