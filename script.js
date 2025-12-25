@@ -1,9 +1,73 @@
+// ========== ระบบเพลงพื้นหลัง ==========
+let bgMusic = null;
+let isMusicPlaying = false;
+
+function initMusic() {
+    // สร้าง audio element
+    bgMusic = new Audio('../music/bgmusic.mp3'); // ⚠️ เปลี่ยนชื่อไฟล์ตรงนี้ตามชื่อเพลงของคุณ
+    bgMusic.loop = true; // วนซ้ำ
+    bgMusic.volume = 0.3; // ระดับเสียง (0.0 - 1.0)
+    
+    // สร้างปุ่มควบคุมเพลง
+    const musicControl = document.createElement('div');
+    musicControl.className = 'music-control';
+    musicControl.innerHTML = `
+        <button class="music-btn" id="musicBtn" title="เปิด/ปิดเพลง">
+            🎵
+        </button>
+    `;
+    document.body.appendChild(musicControl);
+    
+    // เพิ่มฟังก์ชันกดปุ่ม
+    const musicBtn = document.getElementById('musicBtn');
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    // พยายามเล่นเพลงอัตโนมัติเมื่อโหลดหน้า
+    tryAutoplay();
+}
+
+function toggleMusic() {
+    const musicBtn = document.getElementById('musicBtn');
+    
+    if (isMusicPlaying) {
+        bgMusic.pause();
+        musicBtn.textContent = '🎵';
+        musicBtn.classList.remove('playing');
+        isMusicPlaying = false;
+    } else {
+        bgMusic.play().catch(err => {
+            console.log('ไม่สามารถเล่นเพลงได้:', err);
+        });
+        musicBtn.textContent = '🎶';
+        musicBtn.classList.add('playing');
+        isMusicPlaying = true;
+    }
+}
+
+function tryAutoplay() {
+    // เบราว์เซอร์ส่วนใหญ่บล็อก autoplay ดังนั้นจะเล่นเมื่อผู้ใช้คลิกที่ไหนก็ได้
+    document.addEventListener('click', function playOnFirstClick() {
+        if (!isMusicPlaying) {
+            const musicBtn = document.getElementById('musicBtn');
+            bgMusic.play().then(() => {
+                musicBtn.textContent = '🎶';
+                musicBtn.classList.add('playing');
+                isMusicPlaying = true;
+            }).catch(err => {
+                console.log('รอการคลิกเพื่อเปิดเพลง');
+            });
+        }
+        document.removeEventListener('click', playOnFirstClick);
+    }, { once: true });
+}
+
 // ========== Smooth Scroll & Animation ==========
 document.addEventListener('DOMContentLoaded', function() {
     // เพิ่มเอฟเฟกต์เมื่อโหลดหน้า
     console.log('🎉 Happy New Year 2026!');
     
-    // ถ้าต้องการเพิ่มเสียง เอฟเฟกต์ หรือฟังก์ชันพิเศษ ทำได้ที่นี่
+    // เริ่มต้นระบบเพลง
+    initMusic();
 });
 
 // ========== ตัวอย่าง: ฟังก์ชันสำหรับนับจำนวนหน้าที่อ่านแล้ว ==========
