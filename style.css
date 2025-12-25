@@ -169,13 +169,14 @@ body {
     box-shadow: 0 6px 20px rgba(244, 164, 96, 0.4);
 }
 
-/* ========== ปุ่มนำทาง (ก่อนหน้า/ถัดไป) ========== */
+/* ========== ปุ่มนำทาง (ก่อนหน้า/หน้าแรก/ถัดไป) ========== */
 .navigation {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 30px;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .btn-nav {
@@ -191,16 +192,29 @@ body {
 .btn-prev {
     background: #f5f5f5;
     color: #5a4a3a;
+    order: 1;
 }
 
 .btn-prev:hover {
     background: #e0e0e0;
 }
 
+.btn-home {
+    background: #fff;
+    color: #d4791f;
+    border: 2px solid #f4a460;
+    order: 2;
+}
+
+.btn-home:hover {
+    background: #fff5e6;
+}
+
 .btn-next {
     background: linear-gradient(135deg, #f4a460 0%, #d4791f 100%);
     color: white;
     box-shadow: 0 4px 15px rgba(244, 164, 96, 0.3);
+    order: 3;
 }
 
 .btn-next:hover {
